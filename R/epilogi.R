@@ -1,9 +1,7 @@
-epilogi <- function(y, x, tol = 0.01, alpha = 0.05 ) {
+epilogi <- function(y, x, tol = 0.01, alpha = 0.05, parallel = FALSE ) {
   dm <- dim(x)
   n <- dm[1]  ;  d <- dim(x)[2]
-  ind <- 1:d
-  ida <- 1:d
-  indexa <- 1:d
+  ind <- ida <- indexa <- 1:d
   m <- sum(y) / n
   y <- (y - m) / Rfast::Var(y, std = TRUE)
   down <- n - 1
@@ -15,7 +13,7 @@ epilogi <- function(y, x, tol = 0.01, alpha = 0.05 ) {
 
   tic <- proc.time()
   rho <- 0
-  ela <- Rfast::eachcol.apply(x, y)
+  ela <- Rfast::eachcol.apply(x, y, parallel = parallel)
   sel <- which.max( abs(ela) )
   sela <- sel
   names(sela) <- NULL
@@ -30,7 +28,7 @@ epilogi <- function(y, x, tol = 0.01, alpha = 0.05 ) {
   r <- rep(NA, d)
   while ( rho[i] - rho[i - 1] > tol ) {
     i <- i + 1
-    r[ind] <- Rfast::eachcol.apply(x, res, indices = ind, oper = "*", apply = "sum")
+    r[ind] <- Rfast::eachcol.apply(x, res, indices = ind, oper = "*", apply = "sum", parallel = parallel)
     sel <- which.max( abs(r) )
     sela <- c(sela, sel)
     indexa <- ida[-sela]

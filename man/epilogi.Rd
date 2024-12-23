@@ -10,7 +10,7 @@ The \eqn{\epsilon}pilogi Variable Selection Algorithm for Continuous Data.
 }
 
 \usage{
-epilogi(y, x, tol = 0.01, alpha = 0.05)
+epilogi(y, x, tol = 0.01, alpha = 0.05, parallel = FALSE)
 }
 
 \arguments{
@@ -25,6 +25,9 @@ The tolerance value for the algortihm to terminate. This takes values greater th
 }
 \item{alpha}{
 The significance level to deem a predictor variable is statistically equivalent to a selected variable.
+}
+\item{parallel}{
+If set to TRUE, some of the computations take place in parallel (in C++).
 }
 }
 
@@ -47,7 +50,7 @@ A list with the equivalent predictors (if any) corresponding to each selected pr
 }
 
 \references{
-Lakiotaki K., Papadovasilakis Z., Lagani V., Fafalios S., Charonyktakis P., Tsagris M. and Tsamardinos I. (2023). Automated machine learning for Genome Wide Association Studies. Bioinformatics.
+Lakiotaki K., Papadovasilakis Z., Lagani V., Fafalios S., Charonyktakis P., Tsagris M. and Tsamardinos I. (2023). Automated machine learning for Genome Wide Association Studies. Bioinformatics, 39(9): btad545
 
 Tsagris M., Papadovasilakis Z., Lakiotaki K. and Tsamardinos I. (2022). The \eqn{\gamma}-OMP algorithm for feature selection with application to gene expression data. IEEE/ACM Transactions on Computational Biology and Bioinformatics, 19(2): 1214--1224.
 }
